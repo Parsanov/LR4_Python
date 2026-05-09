@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}Камінь-ножиці-папір{% endblock %}
+{% block body %}
+
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+
+    <!-- Рахунок -->
+    <div class="score-board rounded-4 p-4 mb-4 text-center">
+      <h5 class="text-white-50 mb-3 fw-normal">Рахунок сесії</h5>
+      <div class="row g-2">
+        <div class="col">
+          <div class="score-cell win">
+            <div class="score-num">{{ score.wins }}</div>
+            <div class="score-label">Перемоги</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="score-cell draw">
+            <div class="score-num">{{ score.draws }}</div>
+            <div class="score-label">Нічиї</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="score-cell lose">
+            <div class="score-num">{{ score.losses }}</div>
+            <div class="score-label">Поразки</div>
+          </div>
+        </div>
+      </div>
+      <!-- Скинути рахунок -->
+      <form action="{{ url_for('reset') }}" method="POST" class="mt-3">
+        <button type="submit" class="btn btn-outline-light btn-sm">
+          <i class="bi bi-arrow-counterclockwise me-1"></i>Скинути рахунок
+        </button>
+      </form>
+    </div>
+
+    <!-- Вибір ходу -->
+    <h4 class="text-center mb-3 fw-semibold">Зроби свій хід</h4>
+    <form action="{{ url_for('index') }}" method="POST">
+      <div class="row g-3 justify-content-center mb-4">
+        {% for choice in choices %}
+        <div class="col-4">
+          <button type="submit" name="choice" value="{{ choice }}"
+                  class="choice-btn w-100 {% if result and result.player == choice %}chosen{% endif %}">
+            <div class="choice-emoji">{{ emojis[choice] }}</div>
+            <div class="choice-label">{{ labels[choice] }}</div>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </form>
+
+    <!-- Результат раунду -->
+    {% if result %}
+    <div class="result-card rounded-4 p-4
+      {% if result.outcome == 'win' %}result-win
+      {% elif result.outcome == 'lose' %}result-lose
+      {% else %}result-draw{% endif %}">
+
+      <div class="row align-items-center text-center g-3">
+        <!-- Гравець -->
+        <div class="col-4">
+          <div class="vs-emoji">{{ emojis[result.player] }}</div>
+          <div class="vs-name">Ти</div>
+          <div class="vs-choice">{{ labels[result.player] }}</div>
+        </div>
+
+        <!-- VS / підсумок -->
+        <div class="col-4">
+          <div class="outcome-badge">
+            {% if result.outcome == 'win' %}
+              🏆<br><span>Перемога!</span>
+            {% elif result.outcome == 'lose' %}
+              😔<br><span>Поразка</span>
+            {% else %}
+              🤝<br><span>Нічия</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Комп'ютер -->
+        <div class="col-4">
+          <div class="vs-emoji">{{ emojis[result.computer] }}</div>
+          <div class="vs-name">Комп'ютер</div>
+          <div class="vs-choice">{{ labels[result.computer] }}</div>
+        </div>
+      </div>
+
+      <!-- Пояснення результату -->
+      <div class="text-center mt-3 result-reason">
+        {% if result.outcome == 'win' %}
+          {{ labels[result.player] }} перемагає {{ labels[result.computer] | lower }}!
+        {% elif result.outcome == 'lose' %}
+          {{ labels[result.computer] }} перемагає {{ labels[result.player] | lower }}!
+        {% else %}
+          Обидва обрали {{ labels[result.player] | lower }} — нічия!
+        {% endif %}
+      </div>
+
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+/* ЛР4 — Камінь-ножиці-папір */
+
+/* тег */
+body {
+  background: #0f0f13;
+  color: #e8e8e8;
+  min-height: 100vh;
+}
+
+/* тег */
+h4 {
+  color: #e8e8e8;
+}
+
+/* клас */
+.score-board {
+  background: #1a1a24;
+  border: 1px solid #2a2a3a;
+}
+
+/* клас */
+.score-cell {
+  border-radius: 10px;
+  padding: 14px 8px;
+}
+
+.score-cell.win  { background: rgba(34,197,94,.12);  border: 1px solid rgba(34,197,94,.25); }
+.score-cell.draw { background: rgba(234,179,8,.10);  border: 1px solid rgba(234,179,8,.25); }
+.score-cell.lose { background: rgba(239,68,68,.10);  border: 1px solid rgba(239,68,68,.25); }
+
+/* клас */
+.score-num {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.score-cell.win  .score-num { color: #4ade80; }
+.score-cell.draw .score-num { color: #fbbf24; }
+.score-cell.lose .score-num { color: #f87171; }
+
+/* клас */
+.score-label {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* клас */
+.choice-btn {
+  background: #1a1a24;
+  border: 2px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 20px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: inherit;
+}
+
+.choice-btn:hover {
+  background: #22223a;
+  border-color: #4f46e5;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(79,70,229,.25);
+}
+
+/* клас */
+.choice-btn.chosen {
+  border-color: #818cf8;
+  background: #1e1b4b;
+}
+
+/* клас */
+.choice-emoji {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+}
+
+/* клас */
+.choice-label {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* клас */
+.result-card {
+  border: 1px solid #2a2a3a;
+}
+.result-win  { background: rgba(34,197,94,.08);  border-color: rgba(34,197,94,.3) !important; }
+.result-lose { background: rgba(239,68,68,.08);  border-color: rgba(239,68,68,.3) !important; }
+.result-draw { background: rgba(234,179,8,.07);  border-color: rgba(234,179,8,.3) !important; }
+
+/* клас */
+.vs-emoji { font-size: 3rem; }
+.vs-name  { font-size: .7rem; color: #666; text-transform: uppercase; letter-spacing: .5px; margin-top: 6px; }
+.vs-choice { font-size: .9rem; color: #ccc; }
+
+/* клас */
+.outcome-badge {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+.outcome-badge span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  color: #e8e8e8;
+}
+
+/* клас */
+.result-reason {
+  font-size: 0.85rem;
+  color: #888;
+}
