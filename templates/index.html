@@ -5,7 +5,6 @@
 <div class="row justify-content-center">
   <div class="col-lg-7">
 
-    <!-- Рахунок -->
     <div class="score-board rounded-4 p-4 mb-4 text-center">
       <h5 class="text-white-50 mb-3 fw-normal">Рахунок сесії</h5>
       <div class="row g-2">
@@ -28,7 +27,6 @@
           </div>
         </div>
       </div>
-      <!-- Скинути рахунок -->
       <form action="{{ url_for('reset') }}" method="POST" class="mt-3">
         <button type="submit" class="btn btn-outline-light btn-sm">
           <i class="bi bi-arrow-counterclockwise me-1"></i>Скинути рахунок
@@ -36,7 +34,6 @@
       </form>
     </div>
 
-    <!-- Вибір ходу -->
     <h4 class="text-center mb-3 fw-semibold">Зроби свій хід</h4>
     <form action="{{ url_for('index') }}" method="POST">
       <div class="row g-3 justify-content-center mb-4">
@@ -52,7 +49,6 @@
       </div>
     </form>
 
-    <!-- Результат раунду -->
     {% if result %}
     <div class="result-card rounded-4 p-4
       {% if result.outcome == 'win' %}result-win
@@ -60,14 +56,12 @@
       {% else %}result-draw{% endif %}">
 
       <div class="row align-items-center text-center g-3">
-        <!-- Гравець -->
         <div class="col-4">
           <div class="vs-emoji">{{ emojis[result.player] }}</div>
           <div class="vs-name">Ти</div>
           <div class="vs-choice">{{ labels[result.player] }}</div>
         </div>
 
-        <!-- VS / підсумок -->
         <div class="col-4">
           <div class="outcome-badge">
             {% if result.outcome == 'win' %}
@@ -80,7 +74,6 @@
           </div>
         </div>
 
-        <!-- Комп'ютер -->
         <div class="col-4">
           <div class="vs-emoji">{{ emojis[result.computer] }}</div>
           <div class="vs-name">Комп'ютер</div>
@@ -88,7 +81,6 @@
         </div>
       </div>
 
-      <!-- Пояснення результату -->
       <div class="text-center mt-3 result-reason">
         {% if result.outcome == 'win' %}
           {{ labels[result.player] }} перемагає {{ labels[result.computer] | lower }}!
