@@ -18,7 +18,6 @@ CHOICE_EMOJI = {
     "paper":    "📄",
 }
 
-# Камінь б'є ножиці, ножиці ріжуть папір, папір накриває камінь
 BEATS = {
     "rock":     "scissors",
     "scissors": "paper",
@@ -27,7 +26,6 @@ BEATS = {
 
 
 def determine_winner(player: str, computer: str) -> str:
-    """Повертає 'win', 'lose' або 'draw'."""
     if player == computer:
         return "draw"
     if BEATS[player] == computer:
@@ -56,7 +54,6 @@ def index():
         computer_choice = random.choice(CHOICES)
         outcome = determine_winner(player_choice, computer_choice)
 
-        # Оновлення рахунку в сесії
         if outcome == "win":
             session["wins"] = session.get("wins", 0) + 1
         elif outcome == "lose":
